@@ -48,7 +48,7 @@ class DownloadImage:
                     # print('Failed to extract chart from sheet name : ' + str(sheet.name))
                     # print(str(err))
                     pass
-        wb.Close()
+        # wb.Close()
         o.Quit()
 
     def copy_image(self, image_path, slide_index, img_h, img_w, horizontal_pos, vertical_pos):

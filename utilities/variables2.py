@@ -126,9 +126,9 @@ image_filename_slide_dict = {
     "234-235Stg1SHookT_0.jpg": {"slide_index": 21,
                                 "image_type": "image_type_12"},
 
-    "105-235　Stg1SGroove_0.jpg": {"slide_index": 22,
+    "105-235Stg1SGroove_0.jpg": {"slide_index": 22,
                                   "image_type": "image_type_10"},
-    "105-235　Stg1SGroove_00.jpg": {"slide_index": 22,
+    "105-235Stg1SGroove_1.jpg": {"slide_index": 22,
                                    "image_type": "image_type_11"},
 
     "112_0.jpg": {"slide_index": 25,
@@ -151,7 +151,7 @@ image_filename_slide_dict = {
                   "image_type": "image_type_11"},
     # "225226CaseThickness_0.jpg": {"slide_index": 31,
     #                               "image_type": "image_type_10"},
-    "225226CaseThickness_00.jpg": {"slide_index": 31,
+    "225226CaseThickness_0.jpg": {"slide_index": 31,
                                    "image_type": "image_type_11"},
     "101_0.jpg": {"slide_index": 33,
                   "image_type": "image_type_10"},
