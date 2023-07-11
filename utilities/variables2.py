@@ -228,14 +228,9 @@ image_filename_slide_dict = {
                   "image_type": "image_type_10"},
     "101_1.png": {"slide_index": 33,
                   "image_type": "image_type_11"},
-    "238_2.png": {"slide_index": 35,
-
+    "Graph_7.png": {"slide_index": 35,
                   "image_type": "image_type_14"},
-    "242_2.png": {"slide_index": 35,
-                  "image_type":"image_type_14"},
-    "246_2.png": {"slide_index": 35,
-                  "image_type": "image_type_14"},
-
+    
 
 }
 
