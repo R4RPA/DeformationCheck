@@ -26,7 +26,14 @@ judgment_reference_dict = {'params': {
 },
     'file_name': 'judgment.json'}
 
-slide_indices = {"shroud": [6,7,8,9,10], "nozzle": [14,15,16]}
+radius_reference_dict = {'params': {
+    "radius": {
+        "stg_gen": "AB55:AF63",},
+},
+    'file_name': 'radius.json'}
+
+
+slide_indices = {"shroud": [6,7,8,9,10], "nozzle": [14,15,16], "radius": [35]}
 
 dimensions_dict = {
     "image_type_1": {"image_height": 11.2,
