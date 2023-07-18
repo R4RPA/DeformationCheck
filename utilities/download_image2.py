@@ -67,7 +67,11 @@ class DownloadImage:
                 reference_dict = table_reference_dict[sheet.Name]['params']
                 output_filename = table_reference_dict[sheet.Name]['file_name']
                 self.create_data_files(sheet, reference_dict, sheet.Name, output_filename)
-                
+                if sheet.Name == "Summary":
+                    reference_dict = variables.radius_reference_dict['params']
+                    output_filename = variables.radius_reference_dict['file_name']
+                    self.create_data_files(sheet, reference_dict, sheet.Name, output_filename)
+                    
 
             for n, shape in enumerate(sheet.Shapes):
                 new_img_path = f"{self.image_path}{sheet.Name}_{n}"
@@ -95,6 +99,7 @@ class DownloadImage:
         """this function to create summary and jusgment table json files"""
         data = {}
         for component, stages in reference_dict.items():
+            print('component', component, 'stages', stages)
             for stage, cell_range in stages.items():
                 try:
                     range_obj = ws.Range(cell_range)
@@ -103,7 +108,7 @@ class DownloadImage:
                         row_data = []
                         for cell in row.Cells:
                             if cell.Value:
-                                row_data.append(cell.Value)
+                                row_data.append(cell.Text)
                             else:
                                 row_data.append('')
                         if sheet_name == 'Summary':
@@ -138,12 +143,16 @@ class DownloadImage:
         """this function to update summary and jusgment table in the slides"""
         summary_file = variables.summary_reference_dict['file_name']
         judgement_file = variables.judgment_reference_dict['file_name']
+        radius_file = variables.radius_reference_dict['file_name']
         summary_file = os.path.join(self.image_path, summary_file)
         judgement_file = os.path.join(self.image_path, judgement_file)
+        radius_file = os.path.join(self.image_path, radius_file)
         with open(summary_file, 'r') as f:
             summary_data = json.load(f)
         with open(judgement_file, 'r') as f:
             judgement_data = json.load(f)
+        with open(radius_file, 'r') as f:
+            radius_data = json.load(f)
     
         prs = Presentation(self.sv_file)
         slide_indices = variables.slide_indices
@@ -172,6 +181,28 @@ class DownloadImage:
                             for paragraph in cell.text_frame.paragraphs:
                                 for run in paragraph.runs:
                                     run.font.size = font_size_pt
+                                    
+        for component in radius_data:
+            for i, stage in enumerate(radius_data[component]):
+                slide = prs.slides[slide_indices[component][i]]
+                for shape in slide.shapes:
+                    if shape.has_table:
+                        table = shape.table
+                        if len(table.columns) > 1:
+                            radius_values = radius_data[component][stage]
+                            for row in range(len(radius_values)):
+                                for col in range(len(radius_values[row])):
+                                    try:
+                                        cell = table.cell(row, col)
+                                        cell.text = str(radius_values[row][col])
+                                    except:
+                                        pass
+                        font_size_pt = Pt(12)
+                        for cell in table.iter_cells():
+                            for paragraph in cell.text_frame.paragraphs:
+                                for run in paragraph.runs:
+                                    run.font.size = font_size_pt
+                                    
         prs.save(self.sv_file)
         
     def create_folder_in_current_directory(self):
