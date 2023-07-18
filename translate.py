@@ -36,7 +36,7 @@ class ShapeTranslator:
         workbook.Close()
         excel_app.Quit()
 
-excel_file = "C:/MySpace/Projects/CF34/data/HA24K230405(JHV723EJ)径寸法データNew4.xlsm"
+excel_file = "C:/MySpace/Projects/learning/DeformationCheck/data/HA24K230405(JHV723EJ)径寸法データNew4.xlsm"
 
 translator = ShapeTranslator(excel_file)
 translator.translate_shape_names()
